@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SK Chat</title>
+	<style>
+		body{
+			background-color:#004c4d;
+			color: #00e3e6;
+			font-size:2em;
+		}
+		.msg{
+			position: absolute;
+		}
+		form{
+			position: fixed;
+			left:0;
+			top:0;
+			z-index:-1;
+		}
+	</style>
 </head>
 
 <body>
+	<div id="content" class="content"></div>
 	<form action="">
 		<input id="m"/><button>Send</button>
 	</form>
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 	<script>
 		var socket = io();
+		function rndx(){
+			return Math.floor((Math.random()*$(document).width()));	
+		}
+		function rndy(){
+			return Math.floor((Math.random()*$(document).height()));
+			}
+		$('form').submit(function(){
+			socket.emit('chat message', $('#m').val());
+			$('#m').val(' ');
+			return false;
+		});
+		socket.on('chat message',function(msg){
+			var m = $('<div>');
+			m.addClass('msg');
+			m.css('left',rndx());
+			m.css('top',rndy());
+			m.html(msg);
+			$('#content').append(m);
+			m.fadeOut(10000,function(){
+				m.remove();
+			});
+		});
 	</script>
 </body>
