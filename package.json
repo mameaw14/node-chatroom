@@ -1,0 +1,28 @@
+{
+  "name": "socket-chat",
+  "version": "1.0.0",
+  "description": "a chat application run on nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mameaw14/node-chatroom.git"
+  },
+  "keywords": [
+    "chat",
+    "node"
+  ],
+  "author": "Mameaw14",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mameaw14/node-chatroom/issues"
+  },
+  "homepage": "https://github.com/mameaw14/node-chatroom#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "socket.io": "^1.4.4"
+  }
+}
